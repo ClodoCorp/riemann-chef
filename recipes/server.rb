@@ -24,11 +24,13 @@ dpkg_package cached_file do
   not_if 'dpkg -s riemann'
 end
 
-runit_service 'riemann'
-
-service 'riemann' do
-  supports :restart => true
-  action [:start]
+if node['riemann']['init_type'] == 'runit' then
+  runit_service 'riemann'
+else
+  service 'riemann' do
+    supports :restart => true
+    action [:enable, :start]
+  end
 end
 
 directory '/var/log/riemann/' do

@@ -12,3 +12,5 @@ default['riemann']['event_ttl']               = 300
 default['riemann']['email_from']              = 'riemann'
 default['riemann']['graphite']['host']        = 'localhost'
 default['riemann']['dash']['directory']       = '/opt/riemann-dash'
+
+default['riemann']['init_type']   = 'runit'
